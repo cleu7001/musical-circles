@@ -9,47 +9,41 @@
 	<script type="text/paperscript" canvas="myCanvas">
 
 	var keyData = {
-		a: {
-			color: "purple",
-			sound = new Howl({
-  				src: ["assets/sounds/bubbles.mp3"]
-			})
-		},
-		s: {
-			color: "green",
+		q: {
 			sound: new Howl({
-				src: ["Assets/sounds/clay.mp3"]
-			})
+		  	src: ['assets/sounds/bubbles.mp3']
+			}),
+			color: '#1abc9c'
 		},
-		d: {
-			color: "yellow",
+		w: {
 			sound: new Howl({
-				src: ["Assets/sounds/confetti.mp3"]
-			})
+		  	src: ['assets/sounds/clay.mp3']
+			}),
+			color: '#2ecc71'
 		}
 	}
 
 	var circles = [];
-	function onKeyDown(event) {
+	function onKeyDown(e) {
 		if (keyData[event.key]) {
 			var maxPoint = new Point(view.size.width, view.size.height);
 			var randPoint = Point.random();
 			var point = maxPoint * randPoint;
 			var newCircle = new Path.Circle(new Point(point), 500);
-			newCircle.fillColor = keyData[event.key].color;
-			keyData[event.key].sound.play();
+			newCircle.fillColor = keyData[e.key].color;
+			keyData[e.key].sound.play();
 			circles.push(newCircle);
 		}
 	}
 
-	function onFrame(e) {
-		for (var i = 0; i < circles.length; i++) {
-			circles[i].fillColor.hue += 1;
-			circles[i].scale(0.93);
+		function onFrame(e) {
+			for (var i = 0; i < circles.length; i++) {
+				circles[i].fillColor.hue += 1;
+				circles[i].scale(0.9);
+			}
 		}
-	}
 
-</script>
+	</script>
 </head>
 <body>
 
