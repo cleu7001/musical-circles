@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Musical Circles</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+	<script type="text/javascript" src="assets/js/libs/paper-full.min.js"></script>
+	<script type="text/javascript" src="assets/js/libs/howler.min.js"></script>
+
+	<script type="text/paperscript" canvas="myCanvas">
+
+	var sound = new Howl({
+  		src: ["assets/sounds/bubbles.mp3"]
+	});
+
+	sound.play();
+
+
+	var circles = [];
+	function onKeyDown(event) {
+		var maxPoint = new Point(view.size.width, view.size.height);
+		var randPoint = Point.random();
+		var point = maxPoint * randPoint;
+		var newCircle = new Path.Circle(new Point(point), 500);
+		newCircle.fillColor = 'purple';
+		circles.push(newCircle);
+	}
+
+	function onFrame(e) {
+		for (var i = 0; i < circles.length; i++) {
+			circles[i].fillColor.hue += 1;
+			circles[i].scale(0.93);
+		}
+	}
+
+</script>
+</head>
+<body>
+
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
